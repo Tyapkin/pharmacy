@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Pharmacy | каталог препаратов{% endblock %}
+
+{% block search_box %}{% endblock %}
+
+{% block content %}
+
+    <h2>Каталог препаратов</h2>
+
+{% if obj_drugs %}
+
+    <ul class="drug_list">
+
+    {% for drug in obj_drugs %}
+
+        <li><a href="{{ drug.get_absolute_url }}" title="{{ drug.title }}">{{ drug.title }}</a></li>
+
+    {% endfor %}
+
+    </ul>
+
+{% else %}
+
+    <p><strong>Здесь ничего нет :(</strong></p>
+
+{% endif %}
+
+{% endblock %}

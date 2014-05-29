@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Pharmacy | Расширенный поиск{% endblock %}
+
+{% block content %}
+
+    <h3>Расширенный поиск</h3>
+
+{% if search_results %}
+
+    <h3>Результаты поиска</h3>
+
+    <p>
+
+        Вы искали: <strong>{{ qs }}</strong><br />
+
+        Найдено в:
+
+        <ul>
+
+        {% for drug in search_results %}
+
+            <li><a href="{{ drug.get_absolute_url }}">{{ drug.title }}</a></li>
+
+        {% endfor %}
+
+        </ul>
+
+    </p>
+
+{% elif msg %}
+
+    <h3>Результаты поиска</h3>
+
+    <p class="msg">{{ msg }}</p>
+
+{% else %}
+
+    <form action="." method="get">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <input type="submit" value="Найти" />
+
+    </form>
+
+{% endif %}
+
+{% endblock %}

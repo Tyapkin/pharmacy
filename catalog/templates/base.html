@@ -1,0 +1,42 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>
+    {% block title %}
+        {% if page_name %}Pharmacy | {{ page_name }}{% endif %}
+    {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static "css/style.css" %}" />
+</head>
+<body>
+<div class="g">
+    <div class="g-row">
+        <div class="g-3">
+            <nav>
+                <ul class="f-nav-list">
+                    <li><a href="/" title="Перейти на главную страницу">Главная</a></li>
+                    <li><a href="/catalog/" title="Смотреть каталог препаратов">Каталог</a></li>
+                    <li><a href="/search/" title="Расширенный поиск">Поиск</a></li>
+                </ul>
+
+            </nav>
+        </div>
+        <div class="g-5">
+            {% block content %}
+                <h3>Быстрый поиск</h3>
+                <form action="/search/" method="get">
+                    {% csrf_token %}
+                    <input type="hidden" value="q_all" name="q_opt" />
+                    <p><label>Запрос:</label><input type="text" name="search_query" />&nbsp;&nbsp;
+                    <input type="submit" value="Найти" /></p>
+                </form>
+            {% endblock %}
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

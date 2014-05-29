@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% if obj_drug %}
+
+    {% block title %}Pharmacy | {{ obj_drug.title }}{% endblock %}
+
+    {% block content %}
+
+    <article>
+
+        <h1>{{ obj_drug.title }}</h1>
+
+        <p><strong>Описание препарата:</strong><br />{{ obj_drug.description }}</p>
+
+        <p><strong>Показания:</strong><br />{{ obj_drug.symptoms }}</p>
+
+        <p><strong>Противопоказания:</strong><br/>{{ obj_drug.contraindications }}</p>
+
+    </article>
+
+    {% endblock %}
+
+{% endif %}
