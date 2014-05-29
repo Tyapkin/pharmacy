@@ -19,4 +19,5 @@ class SearchFormAdvanced(forms.Form):
     )
 
     search_query = forms.CharField(max_length=100, label='Запрос:')
-    q_opt = forms.ChoiceField(SEARCH_OPTIONS, label='Где искать:')
+    q_opt = forms.MultipleChoiceField(choices=SEARCH_OPTIONS, label='Где искать:',
+                                      widget=forms.CheckboxSelectMultiple)

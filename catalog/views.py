@@ -48,13 +48,13 @@ def search(request):
             qs = form.cleaned_data['search_query']
             q_opt = form.cleaned_data['q_opt']
 
-            if q_opt == 'q_sympt':
+            if 'q_sympt' in q_opt:
                 search_results = Drug.objects.filter(Q(title__iexact=qs) | Q(symptoms__icontains=qs))
-            elif q_opt == 'q_contrind':
+            elif 'q_contrind' in q_opt:
                 search_results = Drug.objects.filter(Q(title__iexact=qs) | Q(contraindications__icontains=qs))
-            elif q_opt == 'q_descr':
+            elif 'q_descr' in q_opt:
                 search_results = Drug.objects.filter(Q(title__iexact=qs) | Q(description__icontains=qs))
-            elif q_opt == 'q_all':
+            elif 'q_all' in q_opt:
                 search_results = Drug.objects.filter(Q(title__iexact=qs) \
                                                      | Q(symptoms__icontains=qs) \
                                                      | Q(contraindications__icontains=qs) \
